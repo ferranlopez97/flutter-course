@@ -25,7 +25,6 @@ class MovieMapNotifier extends StateNotifier<Map<String, Movie>> {
     if (state.containsKey(movieID)) return;
 
     final movie = await getMovie(movieID);
-    print("haciendo peticion http");
     state = {...state, movieID: movie};
   }
 
