@@ -253,7 +253,7 @@ class _CustomSliverAppBar extends StatelessWidget {
             onPressed: () {
               //Toggle
             },
-            icon: Icon(Icons.favorite_border))
+            icon: const Icon(Icons.favorite_border))
       ],
       foregroundColor: Colors.white,
       flexibleSpace: FlexibleSpaceBar(
@@ -310,8 +310,7 @@ class _CustomGradient extends StatelessWidget {
   final List<double> stops;
 
   const _CustomGradient(
-      {super.key,
-      required this.begin,
+      {required this.begin,
       this.end = Alignment.centerRight,
       required this.colors,
       required this.stops});
