@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 class FavoritesView extends StatelessWidget {
@@ -9,11 +7,9 @@ class FavoritesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Favorites view"),
+        title: Text("Favorites view"),
       ),
-      body: const Center(
-        child: Text("Favoritos"),
-      ),
+      body: Center(child: const Text("Favoritos"),),
     );
   }
 }

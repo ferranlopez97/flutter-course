@@ -3,7 +3,10 @@ import 'package:go_router/go_router.dart';
 
 
 class CustomBottonNavigationbar extends StatelessWidget {
-  const CustomBottonNavigationbar({super.key});
+
+  final int currentIndex;
+
+  const CustomBottonNavigationbar({super.key, required this.currentIndex});
 
   int getCurrentIndex(BuildContext context) {
     final String location = GoRouterState.of(context).matchedLocation;
@@ -21,17 +24,7 @@ class CustomBottonNavigationbar extends StatelessWidget {
   }
 
   void onItemTapped(BuildContext context, int index) {
-    switch (index) {
-      case 0:
-        context.go("/");
-        break;
-      case 1:
-        context.go("/");
-        break;
-      case 2:
-        context.go("/favorites");
-        break;
-    }
+    context.go("/home/$index");
   }
 
   @override
@@ -40,7 +33,7 @@ class CustomBottonNavigationbar extends StatelessWidget {
 
     return BottomNavigationBar(
       selectedItemColor: Colors.red,
-      currentIndex: getCurrentIndex(context),
+      currentIndex: currentIndex,
       elevation: 80,
       onTap: (index) => onItemTapped(context, index),
       items: const [

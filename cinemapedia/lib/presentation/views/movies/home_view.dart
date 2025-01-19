@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -82,38 +84,3 @@ class HomeViewState extends ConsumerState<HomeView> {
     );
   }
 }
-
-/**
- * Column(
-        children: [
-          const CustomAppBar(),
-          MoviesSlideshow(movies: slideshowMovies),
-          MovieHorizontalListview(
-            movies: nowPlayingMovies,
-            title: "En cines",
-            subtitle: "Lunes",
-            loadNextPage: () => ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
-          ), 
-      
-          MovieHorizontalListview(
-            movies: nowPlayingMovies,
-            title: "Proximamente",
-            subtitle: "Este mes",
-            loadNextPage: () => ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
-          ), 
-      
-          MovieHorizontalListview(
-            movies: nowPlayingMovies,
-            title: "Populares",
-            loadNextPage: () => ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
-          ),
-      
-          MovieHorizontalListview(
-            movies: nowPlayingMovies,
-            title: "Mejor valoradas",
-            subtitle: "Of all time",
-            loadNextPage: () => ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
-          )
-        ]
-      ),
- */
