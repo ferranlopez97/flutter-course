@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:widgets_app/presentation/screens/home/home_screen.dart';
 
 class SnackbarScreen extends StatelessWidget {
 

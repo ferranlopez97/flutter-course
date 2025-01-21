@@ -132,7 +132,7 @@ class _CardType3 extends StatelessWidget {
     final colors = Theme.of(context).colorScheme;
 
     return Card(
-      color: colors.surfaceVariant,
+      color: colors.surfaceContainerHighest,
       shape: RoundedRectangleBorder(
         borderRadius: const BorderRadius.all(Radius.circular(12)),
         side: BorderSide(
@@ -174,7 +174,7 @@ class _CardType4 extends StatelessWidget {
 
     return Card(
       clipBehavior: Clip.hardEdge,
-      color: colors.surfaceVariant,
+      color: colors.surfaceContainerHighest,
       shape: RoundedRectangleBorder(
         borderRadius: const BorderRadius.all(Radius.circular(12)),
         side: BorderSide(
