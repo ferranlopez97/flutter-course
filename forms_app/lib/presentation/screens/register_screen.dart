@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:forms_app/presentation/blocs/register_cubit/register_cubit.dart';
@@ -48,75 +46,42 @@ class _RegisterView extends StatelessWidget {
   }
 }
 
-class _RegisterForm extends StatefulWidget {
+class _RegisterForm extends StatelessWidget {
   const _RegisterForm();
 
   @override
-  State<_RegisterForm> createState() => _RegisterFormState();
-}
-
-class _RegisterFormState extends State<_RegisterForm> {
-  final GlobalKey<FormState> _formKey = GlobalKey();
-
-  @override
   Widget build(BuildContext context) {
-
     final registerCubit = context.watch<RegisterCubit>();
+    final username = registerCubit.state.username;
+    final email = registerCubit.state.email;
+    final password = registerCubit.state.password;
 
     return Form(
-      key: _formKey,
       child: Column(
         children: [
           CustomTextFormField(
             label: "Nombre de usuario",
-            onChange: (p0) {
-              registerCubit.usernameChanged(p0);
-              _formKey.currentState?.validate();
-            },
-            validator: (value) {
-              if (value == null || value.isEmpty) return "Campo requerido";
-              if (value.trim().isEmpty) return "Campo requerido";
-              if (value.trim().length < 6) return "Mínimo 6 letras";
-              return null;
-            },
+            onChange: registerCubit.usernameChanged,
+            errorMessage: username.errorMessage,
           ),
           const SizedBox(height: 10),
           CustomTextFormField(
             label: "Correo electrónico",
-            onChange: (p0) {
-              registerCubit.emailChanged(p0);
-              _formKey.currentState?.validate();
-            },
-            validator: (value) {
-              if (value == null || value.isEmpty) return "Campo requerido";
-              if (value.trim().isEmpty) return "Campo requerido";
-              final emailRegExp = RegExp(
-                r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
-              );
-              if (!emailRegExp.hasMatch(value)) return 'No tiene formato de correo';
-              return null;
-            },
+            onChange: registerCubit.emailChanged,
+            errorMessage: email.errorMessage,
           ),
           const SizedBox(height: 10),
           CustomTextFormField(
             label: "Contraseña",
             obscure: true,
-            onChange: (p0) {
-              registerCubit.passwordChanged(p0);
-              _formKey.currentState?.validate();
-            },
-            validator: (value) {
-              if (value == null || value.isEmpty) return "Campo requerido";
-              if (value.trim().isEmpty) return "Campo requerido";
-              if (value.trim().length < 6) return "Mínimo 6 letras";
-              return null;
-            },
+            onChange: registerCubit.passwordChanged,
+            errorMessage: password.errorMessage,
           ),
           const SizedBox(height: 20),
           FilledButton.tonalIcon(
             onPressed: () {
-              final isValid = _formKey.currentState!.validate();
-              if (!isValid) return;
+              // final isValid = _formKey.currentState!.validate();
+              // if (!isValid) return;
 
               registerCubit.onSubmit();
             },
