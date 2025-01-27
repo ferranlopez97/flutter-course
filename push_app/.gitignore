@@ -43,3 +43,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+#Firebase conig
+.firebsae.json
+./lib/firebsae_options.dart
