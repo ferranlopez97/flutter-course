@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "714618580752",
+    "project_id": "test-flutter-course",
+    "storage_bucket": "test-flutter-course.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:714618580752:android:73ce68cb7fbfcc7c6dbf95",
+        "android_client_info": {
+          "package_name": "com.flopez.push_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBE8OC9DBBJaFsInT_CgH1Q6yb_eXLmD6g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
