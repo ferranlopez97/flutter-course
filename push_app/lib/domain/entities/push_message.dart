@@ -26,6 +26,5 @@ sendDate:   $sendDate
 data:       $data
 imageUrl:   $imageUrl
 ''';
-    return super.toString();
   }
 }

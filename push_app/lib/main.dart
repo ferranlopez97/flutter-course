@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:push_app/config/local_notifications/local_notifications.dart';
 import 'package:push_app/config/router/app_router.dart';
 import 'package:push_app/config/theme/app_theme.dart';
 import 'package:push_app/presentation/blocs/notifications/notifications_bloc.dart';
@@ -11,9 +13,23 @@ void main() async {
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
 
   await NotificationsBloc.initializedFCM();
+  await LocalNotifications.initializeLocalNotifications();
+
+  FirebaseAuth.instance
+  .authStateChanges()
+  .listen((User? user) {
+    if (user == null) {
+      print('User is currently signed out!');
+    } else {
+      print('User is signed in!');
+    }
+  });
 
   runApp(MultiBlocProvider(
-    providers: [BlocProvider(create: (_) => NotificationsBloc())],
+    providers: [BlocProvider(create: (_) => NotificationsBloc(
+      requestLocalNotifcationPermission: LocalNotifications.requestPermissionLocalNotifications, 
+      showLocalNotification: LocalNotifications.showLocalNotification
+    ))],
     child: const MainApp(),
   ));
 }

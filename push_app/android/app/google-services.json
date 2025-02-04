@@ -12,7 +12,20 @@
           "package_name": "com.flopez.push_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "714618580752-1226lueul64hqede7g8dl8jp2c0gjq1v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.flopez.push_app",
+            "certificate_hash": "7bb696b9b9f4dd4139dae02a9359b22198523fe7"
+          }
+        },
+        {
+          "client_id": "714618580752-nsc6iq7fd6uam7n0gvfct9n55ffe6hnc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBE8OC9DBBJaFsInT_CgH1Q6yb_eXLmD6g"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "714618580752-nsc6iq7fd6uam7n0gvfct9n55ffe6hnc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "714618580752-2ujbspq5t4dv8qevhfmd2v77u0jh3b4q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.flopez.push-app"
+              }
+            }
+          ]
         }
       }
     }

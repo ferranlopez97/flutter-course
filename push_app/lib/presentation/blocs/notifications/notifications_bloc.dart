@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:push_app/config/local_notifications/local_notifications.dart';
 import 'package:push_app/domain/entities/push_message.dart';
 import 'package:push_app/firebase_options.dart';
 
@@ -17,7 +18,19 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   FirebaseMessaging messaging = FirebaseMessaging.instance;
 
-  NotificationsBloc() : super(const NotificationsState()) {
+  int pushNumberId = 0;
+
+  final Future<void> Function()? requestLocalNotifcationPermission;
+  final void Function({
+    required int id,
+    String? title,
+    String? body,
+    String? data,
+  }) showLocalNotification;
+
+  NotificationsBloc(
+      {this.requestLocalNotifcationPermission, required this.showLocalNotification})
+      : super(const NotificationsState()) {
     on<NotificationStatusChanged>(_onNotificationStatusChanged);
     on<NotificationReceived>(_onNotificationReceived);
 
@@ -73,6 +86,13 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
             ? message.notification!.android?.imageUrl
             : message.notification!.apple?.imageUrl);
 
+    showLocalNotification(
+      id: ++pushNumberId,
+      body: notification.body,
+      data: notification.messageId,
+      title: notification.title,
+    );
+
     add(NotificationReceived(notification: notification));
   }
 
@@ -82,23 +102,29 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
 
   void requestPermisstion() async {
     NotificationSettings settings = await messaging.requestPermission(
-        alert: true,
-        announcement: false,
-        badge: true,
-        carPlay: false,
-        criticalAlert: true,
-        provisional: false,
-        sound: true);
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: true,
+      provisional: false,
+      sound: true,
+    );
+
+    if (requestLocalNotifcationPermission != null) {
+      await requestLocalNotifcationPermission!();
+    }
 
     add(NotificationStatusChanged(settings.authorizationStatus));
   }
 
   PushMessage? getMessageById(String pushMessageId) {
-    final exists = state.notifications.any((element) => element.messageId == pushMessageId);
+    final exists = state.notifications
+        .any((element) => element.messageId == pushMessageId);
 
-    if (!exists) return null; 
+    if (!exists) return null;
 
-    return state.notifications.firstWhere((element) => element.messageId == pushMessageId);
+    return state.notifications
+        .firstWhere((element) => element.messageId == pushMessageId);
   }
-
 }
